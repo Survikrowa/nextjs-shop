@@ -1,14 +1,15 @@
+import { Header } from 'components/HomePage/Header/Header';
+import { Products } from 'components/HomePage/Products/Products';
 import Head from 'next/head';
 
 export default function Home() {
   return (
-    <div className="container">
+    <div>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Shop</title>
       </Head>
-
-      <main className="bg-blue-600">hello</main>
+      <Header />
+      <Products />
     </div>
   );
 }
