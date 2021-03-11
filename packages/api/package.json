@@ -4,11 +4,14 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "ts-node-dev src/index.ts"
+    "dev": "concurrently --kill-others-on-fail \"npm:dev:*\"",
+    "dev:start": "ts-node-dev src/index.ts",
+    "dev:start:db": "docker-compose down && docker-compose up"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^6.0.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1"
   },

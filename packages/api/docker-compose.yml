@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  videoplatform_db:
+    container_name: 'shop_db'
+    image: postgres:13.1-alpine
+    ports:
+      - '${SHOP_DB_PORT}:${SHOP_DB_PORT}'
+    environment:
+      - POSTGRES_USER=${SHOP_DB_USERNAME}
+      - POSTGRES_PASSWORD=${SHOP_DB_PASSWORD}
+      - POSTGRES_DB=${SHOP_DB_NAME}
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
