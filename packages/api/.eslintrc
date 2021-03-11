@@ -1,0 +1,23 @@
+{
+  "root": true,
+  "extends": ["prettier"],
+  "env": {
+    "jest": true,
+    "node": true
+  },
+  "rules": {
+    "@typescript-eslint/no-unused-vars": 0,
+    "prettier/prettier": "error",
+    "@typescript-eslint/explicit-member-accessibility": 0,
+    "@typescript-eslint/indent": 0,
+    "@typescript-eslint/member-delimiter-style": 0,
+    "@typescript-eslint/no-var-requires": 0,
+    "@typescript-eslint/no-use-before-define": 0,
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-non-null-assertion": 0,
+    "@typescript-eslint/no-floating-promises": 2,
+    "no-undef": 0
+  }
+}
