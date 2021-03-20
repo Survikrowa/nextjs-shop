@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import type { NextFunction, Request, RequestHandler, Response } from 'express';
 
 export const withAsync = (routeCallback: RequestHandler) => async (
@@ -9,6 +8,9 @@ export const withAsync = (routeCallback: RequestHandler) => async (
   try {
     await routeCallback(req, res, next);
   } catch (error) {
-    res.status(500).json({ message: 'Internal Server Error' });
+    if (error.status) {
+      res.status(error.status).json({ message: error.message });
+    }
+    res.status(500).json({ message: 'Internal server error' });
   }
 };
