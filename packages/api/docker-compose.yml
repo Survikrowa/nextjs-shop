@@ -9,4 +9,5 @@ services:
     environment:
       - POSTGRES_USER=${SHOP_DB_USERNAME}
       - POSTGRES_PASSWORD=${SHOP_DB_PASSWORD}
-      - POSTGRES_DB=${SHOP_DB_NAME}
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
