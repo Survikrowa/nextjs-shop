@@ -9,8 +9,11 @@ export const withAsync = (routeCallback: RequestHandler) => async (
     await routeCallback(req, res, next);
   } catch (error) {
     if (error.status) {
-      res.status(error.status).json({ message: error.message });
+      return res.status(error.status).json({ status: error.status, message: error.message });
     }
-    res.status(500).json({ message: 'Internal server error' });
+    if (error.name === 'ValidationError') {
+      return res.status(422).json({ status: 422, message: error.errors });
+    }
+    return res.status(500).json({ status: 500, message: error });
   }
 };
