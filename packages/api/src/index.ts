@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { urlencoded, json } from 'express';
 import { config } from 'dotenv';
 import { appRouter } from './routes';
 
@@ -7,6 +7,13 @@ const PORT = process.env.APP_PORT || 3000;
 
 const app = express();
 
+app.use(urlencoded({ extended: false }));
+app.use(json());
+
 app.use('/api', appRouter);
 
-app.listen(PORT, () => console.log(`I'm listening on port ${PORT}`));
+const server = app.listen(PORT, () => console.log(`I'm listening on port ${PORT}`));
+
+process.on('SIGTERM', () => {
+  server.close();
+});
