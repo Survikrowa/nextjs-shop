@@ -6,15 +6,13 @@
 //     console.log(username, password, done);
 //   }),
 // );
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '../../db';
 
 type UserRegisterData = {
   username: string;
   email: string;
   password: string;
 };
-
-const prisma = new PrismaClient();
 
 export const saveUserToDatabase = async ({ username, email, password }: UserRegisterData) => {
   const user = await prisma.user.create({
