@@ -7,7 +7,10 @@
     "dev": "concurrently --kill-others-on-fail \"npm:dev:start:*\"",
     "dev:start:server": "wait-on tcp:5432 --interval 5000 && npm run dev:migrate:up && ts-node-dev -s -H -T --respawn src/index.ts",
     "dev:start:db": "docker-compose up",
-    "dev:migrate:up": "prisma migrate dev"
+    "dev:migrate:up": "prisma migrate dev",
+    "test": "npm run test:start && npm run dev:start:db ",
+    "test:start": "wait-on tcp:5432 --interval 5000 && npm run test:migrate:up",
+    "test:migrate:up": "dotenv -e .env.test prisma migrate dev"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +19,7 @@
     "bcrypt": "^5.0.1",
     "concurrently": "^6.0.0",
     "dotenv": "^8.2.0",
+    "dotenv-cli": "^4.0.0",
     "express": "^4.17.1",
     "joi": "^17.4.0",
     "passport": "^0.4.1",
