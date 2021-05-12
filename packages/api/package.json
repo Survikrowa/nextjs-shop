@@ -1,22 +1,46 @@
 {
-  "name": "api",
+  "name": "shop-api",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "ts-node-dev src/index.ts"
+    "dev": "concurrently --kill-others-on-fail \"npm:dev:start:*\"",
+    "dev:start:server": "wait-on tcp:5432 --interval 5000 && npm run dev:migrate:up && ts-node-dev -s -H -T --respawn src/index.ts",
+    "dev:start:db": "docker-compose up -d",
+    "dev:stop:db": "docker-compose stop",
+    "dev:migrate:up": "prisma migrate dev",
+    "prepareTest": "npm run dev:start:db  && npm run prepareTest:start",
+    "prepareTest:start": "wait-on tcp:5432 --interval 5000 && npm run prepareTest:migrate:up",
+    "prepareTest:migrate:up": "dotenv -e .env.test prisma migrate dev",
+    "test": "cross-env NODE_ENV=test jest --detectOpenHandles"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^2.19.0",
+    "bcrypt": "^5.0.1",
+    "concurrently": "^6.0.0",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "dotenv-cli": "^4.0.0",
+    "express": "^4.17.1",
+    "joi": "^17.4.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@tsconfig/node14": "^1.0.0",
+    "@types/bcrypt": "^3.0.0",
     "@types/express": "^4.17.11",
     "@types/node": "^14.14.31",
+    "@types/passport": "^1.0.6",
+    "@types/passport-local": "^1.0.33",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.21.0",
+    "jest": "^26.6.3",
+    "prisma": "^2.19.0",
     "ts-node-dev": "^1.1.6",
-    "typescript": "^4.2.2"
+    "typescript": "^4.2.2",
+    "wait-on": "^5.3.0"
   }
 }

@@ -22,7 +22,10 @@
     "strict": true,
     "noEmit": true,
     "module": "esnext",
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "paths": {
+      "@components/*": ["components/*"]
+    }
   },
   "typeRoots": ["./node_modules/@types", "./shared/typings/jsx.d.ts", "./shared/typings/svg.d.ts"],
   "exclude": ["node_modules", ".next", "out", "public", "cypress"],
