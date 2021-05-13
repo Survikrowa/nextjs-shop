@@ -7,7 +7,11 @@ import { saveUserToDatabase } from './user.service';
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const { username, password, email } = await userRegisterSchema.validate(req.body);
+    const { error, value } = userRegisterSchema.validate(req.body);
+    if (error) {
+      return res.status(422).json({ status: 422, message: error });
+    }
+    const { username, password, email } = value;
     const user = await findUserBy({
       OR: [
         {
@@ -29,7 +33,5 @@ export const createUser = async (req: Request, res: Response) => {
         .status(201)
         .json({ status: 201, message: 'User successfully created! You can log in now.' });
     }
-  } catch (e) {
-    return res.status(422).json({ status: 422, message: e.errors });
-  }
+  } catch (e) {}
 };
