@@ -8,7 +8,7 @@ import { saveUserToDatabase } from './auth.service';
 export const createUser = async (req: Request, res: Response) => {
   const { error, value } = userRegisterSchema.validate(req.body);
   if (error) {
-    return res.status(422).json({ status: 422, message: error });
+    return res.status(422).json({ status: 422, message: error.message });
   }
   const { username, password, email } = value;
   const user = await findUserBy({
