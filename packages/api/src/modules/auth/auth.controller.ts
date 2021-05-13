@@ -1,9 +1,9 @@
 import type { Request, Response } from 'express';
 import { hash } from 'bcrypt';
-import { userRegisterSchema } from './user.schema';
+import { userRegisterSchema } from './auth.schema';
 import { BCRYPT_SALT_ROUNDS } from '../../constants/constants';
 import { findUserBy } from '../../utility/findBy';
-import { saveUserToDatabase } from './user.service';
+import { saveUserToDatabase } from './auth.service';
 
 export const createUser = async (req: Request, res: Response) => {
   const { error, value } = userRegisterSchema.validate(req.body);

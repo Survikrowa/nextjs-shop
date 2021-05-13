@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createUser } from './user.controller';
+import { createUser } from './auth.controller';
 import { withAsync } from '../../middlewares/withAsync';
 
 export const userRouter = Router();
