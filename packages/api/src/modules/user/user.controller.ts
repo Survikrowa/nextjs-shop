@@ -4,14 +4,6 @@ import { userRegisterSchema } from './user.schema';
 import { BCRYPT_SALT_ROUNDS } from '../../constants/constants';
 import { findUserBy } from '../../utility/findBy';
 import { saveUserToDatabase } from './user.service';
-import { config } from 'dotenv';
-if (process.env.NODE_ENV === 'TEST') {
-  config({
-    path: '../.env.test',
-  });
-} else {
-  config();
-}
 
 export const createUser = async (req: Request, res: Response) => {
   try {
