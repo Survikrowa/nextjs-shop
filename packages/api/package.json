@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "concurrently --kill-others-on-fail \"npm:dev:start:*\"",
     "dev:start:server": "wait-on tcp:5432 --interval 5000 && npm run dev:migrate:up && ts-node-dev -s -H -T --respawn src/index.ts",
-    "dev:start:db": "docker-compose up -d",
+    "dev:start:db": "docker-compose start",
     "dev:stop:db": "docker-compose stop",
     "dev:migrate:up": "prisma migrate dev",
     "prepareTest": "npm run dev:start:db  && npm run prepareTest:start",
@@ -35,10 +35,12 @@
     "@types/node": "^14.14.31",
     "@types/passport": "^1.0.6",
     "@types/passport-local": "^1.0.33",
+    "@types/supertest": "^2.0.11",
     "cross-env": "^7.0.3",
     "eslint": "^7.21.0",
     "jest": "^26.6.3",
     "prisma": "^2.19.0",
+    "supertest": "^6.1.3",
     "ts-node-dev": "^1.1.6",
     "typescript": "^4.2.2",
     "wait-on": "^5.3.0"
