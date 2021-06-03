@@ -12,7 +12,7 @@
     "prepareTest": "npm run dev:start:db  && npm run prepareTest:start",
     "prepareTest:start": "wait-on tcp:5432 --interval 5000 && npm run prepareTest:migrate:up",
     "prepareTest:migrate:up": "dotenv -e .env.test prisma migrate dev",
-    "test": "cross-env NODE_ENV=test jest --detectOpenHandles"
+    "test": "cross-env NODE_ENV=test jest"
   },
   "author": "",
   "license": "ISC",

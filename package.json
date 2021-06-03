@@ -15,7 +15,9 @@
     "type-check": "lerna run tsc --stream",
     "postinstall": "husky install",
     "pretty": "pretty-quick --staged",
-    "test": "lerna run test --parallel"
+    "test": "lerna run test --parallel",
+    "dockerstart": "lerna run dev:start:db",
+    "dockerstop": "lerna run dev:stop:db"
   },
   "devDependencies": {
     "@types/jest": "^26.0.23",
