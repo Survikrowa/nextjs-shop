@@ -47,9 +47,9 @@ export const logInUser: RequestHandler = async (req, res) => {
   if (!user) {
     return res.status(404).json({ status: 404, message: 'Invalid username or password' });
   }
-  const passwordValid = await compare(password, user.password);
-  if (!passwordValid) {
-    return res.status(401).json({ status: 401, message: 'Invalid username or password' });
+  const isPasswordValid = await compare(password, user.password);
+  if (!isPasswordValid) {
+    return res.status(404).json({ status: 404, message: 'Invalid username or password' });
   }
   //TBH im doing it with JWT access token without refresh only because i want to host it on free hostings without custom domain
   const accessToken = jwt.sign({ username }, process.env.JWT_TOKEN_SECRET as string);
