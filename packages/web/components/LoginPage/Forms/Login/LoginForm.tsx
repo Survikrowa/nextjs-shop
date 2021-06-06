@@ -12,7 +12,7 @@ export const LoginForm = () => {
         onSubmit={(values) => console.log(values)}
       >
         {({ handleSubmit, handleChange, values: { username, password }, errors }) => (
-          <Form className="flex flex-col" onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit}>
             <Input
               type="text"
               name="username"

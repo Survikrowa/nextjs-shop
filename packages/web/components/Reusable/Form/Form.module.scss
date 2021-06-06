@@ -1,0 +1,7 @@
+.form {
+  @apply container;
+  @apply rounded-md;
+  @apply min-w-max;
+  @apply flex;
+  @apply flex-col;
+}

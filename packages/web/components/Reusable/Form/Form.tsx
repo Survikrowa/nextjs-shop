@@ -1,13 +1,13 @@
 import { FormHTMLAttributes } from 'react';
+import styles from './Form.module.scss';
 
 type FormProps = {
   children: React.ReactNode;
-  className: string;
 } & FormHTMLAttributes<HTMLFormElement>;
 
-export const Form = ({ onSubmit, children, className }: FormProps) => {
+export const Form = ({ onSubmit, children }: FormProps) => {
   return (
-    <form className={className} onSubmit={onSubmit}>
+    <form className={styles.form} onSubmit={onSubmit}>
       {children}
     </form>
   );
